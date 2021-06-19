@@ -23,6 +23,8 @@ Clicking anywhere else should hide the button again
 - Split API Controller into two seperate controllers for Feed / Articles for better segregation
 - Find a way to gather RSS images better, having to use random images at the moment
 - Add a time check to see when the last feed was checked. Stops us requesting a new feed every time
+- Adding in some PHP unit tests would be nice
+- Verify URL is a URL when posting in via API feed
 
 ## Findings
 - Twitter seems to have disabled RSS feeds a while ago, only services out there now that provide it (nitter). Shame.
