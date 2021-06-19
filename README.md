@@ -21,6 +21,7 @@ Clicking anywhere else should hide the button again
 - Protect APIs against potential attacks (Subscribing to feeds we don't want)
 - Validation on API routes should display better error messages
 - Split API Controller into two seperate controllers for Feed / Articles for better segregation
+- Find a way to gather RSS images better, having to use random images at the moment
 
 ## Findings
 - Twitter seems to have disabled RSS feeds a while ago, only services out there now that provide it (nitter). Shame.

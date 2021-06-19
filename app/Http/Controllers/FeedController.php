@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\Feed;
+use App\Traits\ProcessRSSFeed;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class FeedController extends Controller
 {
-    //
+    use ProcessRSSFeed;
 
     private $feedUrl = 'https://feeds.bbci.co.uk/news/rss.xml?edition=uk';
 
@@ -22,14 +23,9 @@ class FeedController extends Controller
         $articles = []; // Init articles incase we get none back
 
         foreach($feeds as $f) {
-            $feed = implode(file($f->url)); // Fetch XML rss feed
+            $array = $this->processXML($f);
 
-            // Load XML String
-            $xml = simplexml_load_string($feed,'SimpleXMLElement', LIBXML_NOCDATA);
-            // Encode into JSON
-            $json = json_encode($xml);
-            // Decode into a PHP Array
-            $array = json_decode($json,TRUE);
+            dd($array);
 
             if($array) {
                 foreach($array['channel']['item'] as $i) {

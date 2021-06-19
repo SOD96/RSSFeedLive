@@ -24,4 +24,14 @@ class Feed extends Model
     protected $fillable = [
         'url', 'deleted', 'last_checked'
     ];
+
+    public function article()
+    {
+        return $this->hasOne(Article::class);
+    }
+
+    public function articles()
+    {
+        return $this->hasMany(Article::class);
+    }
 }

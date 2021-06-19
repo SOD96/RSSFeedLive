@@ -24,4 +24,9 @@ class Article extends Model
     protected $fillable = [
         'feed_id', 'title', 'description', 'link', 'guid', 'published_date', 'deleted'
     ];
+
+    public function feed()
+    {
+        return $this->belongsTo(Feed::class);
+    }
 }

@@ -45,7 +45,6 @@ class processFeedArticles extends Command
         $feeds = Feed::where('active', true)->get();
 
         foreach($feeds as $f) {
-
             $array = $this->processXML($f);
 
             if($array) {

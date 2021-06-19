@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use Illuminate\Http\Request;
 use App\Models\Feed;
 
@@ -13,9 +14,9 @@ class APIController extends Controller
      */
     public function getFeed()
     {
-        $feeds = Feed::all()->where('deleted', false);
+        $feed = Feed::where('active', true)->get();
 
-        return ['success' => true, 'feeds' => $feeds];
+        return ['success' => true, 'feed' => $feed];
     }
 
     /**
@@ -41,5 +42,12 @@ class APIController extends Controller
         // We'll always return with a successful feed result, even if the feed exists because we still want them to
         // believe it's been added to the system, foils spam attempts etc...
         return ['success' => true, $feed];
+    }
+
+    public function getArticles()
+    {
+        $article = Article::where('deleted', false)->get();
+
+        return ['success' => true, 'article' => $article];
     }
 }
