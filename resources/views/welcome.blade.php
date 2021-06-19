@@ -28,11 +28,12 @@
     </header>
 
     <!-- Get the most recent post -->
-    <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark">
+    <!-- Added some shadow styling to the title, description and link so they don't appear badly on a bright background -->
+    <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark" style="background-image: url('https://picsum.photos/1300/400')">
         <div class="col-md-6 px-0">
-            <h1 class="display-4 font-italic">{{$articles[0]->title}}</h1>
-            <p class="lead my-3">{{$articles[0]->description}}</p>
-            <p class="lead mb-0"><a href="{{$articles[0]->link}}" class="text-white font-weight-bold">Continue reading...</a></p>
+            <h1 class="display-4 font-italic" style="text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;">{{$articles[0]->title}}</h1>
+            <p class="lead my-3" style="text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;">{{$articles[0]->description}}</p>
+            <p class="lead mb-0" style="text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;"><a href="{{$articles[0]->link}}" class="text-white font-weight-bold">Continue reading...</a></p>
         </div>
     </div>
 
@@ -47,7 +48,7 @@
                     <div class="mb-1 text-muted">{{\Carbon\Carbon::parse($a->published_date)->diffForHumans()}}</div>
                     <p class="card-text mb-auto">{{Str::limit($a->description, 120)}}</p>
                     <a href="{{$a->link}}">Continue reading</a>
-                    <small>Accreditation: {{$a->feed->url}}</small>
+                    <small class="text-muted">Accreditation: {{$a->feed->url}}</small>
                 </div>
                 <!-- Having to use a random image source because the BBC doesn't seem to give out their images -->
                 <img class="card-img-right flex-auto d-none d-md-block" data-src="https://picsum.photos/200/300" alt="Thumbnail [200x250]" style="width: 200px; height: 250px;" src="https://picsum.photos/200/300?random={{rand(1,20)}}" data-holder-rendered="true">
