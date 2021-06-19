@@ -4,8 +4,10 @@ namespace App\Traits;
 
 trait ProcessRSSFeed
 {
+
     /**
      * @param $f
+     * @return mixed
      * Take all the XML converting to JSON, converting back out of the main functions and into a trait to keep it clean
      */
     protected function processXML($f)

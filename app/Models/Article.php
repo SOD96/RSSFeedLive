@@ -25,6 +25,10 @@ class Article extends Model
         'feed_id', 'title', 'description', 'link', 'guid', 'published_date', 'deleted'
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * Articles belong to feeds via feed_id
+     */
     public function feed()
     {
         return $this->belongsTo(Feed::class);

@@ -44,6 +44,10 @@ class APIController extends Controller
         return ['success' => true, $feed];
     }
 
+    /**
+     * @return array
+     * Get all articles that aren't deleted
+     */
     public function getArticles()
     {
         $article = Article::where('deleted', false)->get();

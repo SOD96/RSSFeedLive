@@ -25,11 +25,19 @@ class Feed extends Model
         'url', 'deleted', 'last_checked'
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * One feed can have also one article
+     */
     public function article()
     {
         return $this->hasOne(Article::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * One feed can have many articles
+     */
     public function articles()
     {
         return $this->hasMany(Article::class);

@@ -14,6 +14,7 @@ class FeedSeeder extends Seeder
      */
     public function run()
     {
+        // Insert a basic BBC RSS feed into the database
         DB::table('feed')->insert([
             'url' => 'https://feeds.bbci.co.uk/news/rss.xml?edition=uk',
             'active' => true
