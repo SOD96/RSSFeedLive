@@ -11,10 +11,19 @@ Clicking anywhere else should hide the button again
 
 ## Plan
 
+- Use laravel sail, high compatibility between machines.
 - Find an RSS feed (Twitter?, already using blog posts on portfolio?)
+- Use BBC News feed, good chances with this.
 - Create APIs for subscribing to new feeds / pulling content from feeds
-
+- Pulled content should be stored in DB, perhaps we setup a laravel job to pull these every minute or so?
+- 
 
 ## Future Plan
 - Protect APIs against potential attacks (Subscribing to feeds we don't want)
 
+## Findings
+- Twitter seems to have disabled RSS feeds a while ago, only services out there now that provide it (nitter). Shame.
+
+## Launching Application
+
+run in terminal: `./vendor/bin/sail up`
