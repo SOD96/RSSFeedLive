@@ -23,4 +23,3 @@ Route::get('feed', [APIController::class, 'getFeed']);
 Route::post('feed', [APIController::class, 'postFeed']);
 
 Route::get('article', [APIController::class, 'getArticles']);
-

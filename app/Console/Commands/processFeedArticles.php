@@ -46,6 +46,9 @@ class processFeedArticles extends Command
 
         foreach($feeds as $f) {
             $array = $this->processXML($f);
+            // Update feed so it shows when it was last updated
+            $f->last_checked = Carbon::now();
+            $f->save();
 
             if($array) {
                 foreach($array['channel']['item'] as $i) {
