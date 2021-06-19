@@ -20,7 +20,7 @@ class CreateFeedTable extends Migration
             $table->timestamp('last_checked'); // Update this timestamp whenever we pull the latest articles
             $table->timestamps();
 
-            $table->index(['active']); // Indexing active as we'll only be getting the active feeds
+            $table->index('active'); // Indexing active as we'll only be getting the active feeds
         });
     }
 
