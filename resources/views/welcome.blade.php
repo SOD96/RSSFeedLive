@@ -29,11 +29,11 @@
 
     <!-- Get the most recent post -->
     <!-- Added some shadow styling to the title, description and link so they don't appear badly on a bright background -->
-    <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark" style="background-image: url('https://picsum.photos/1300/400')">
+    <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark" style="background-image: url('https://picsum.photos/1300/600')">
         <div class="col-md-6 px-0">
             <h1 class="display-4 font-italic" style="text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;">{{strtoupper($articles[0]->title)}}</h1>
             <p class="lead my-3" style="text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;">{{$articles[0]->description}}</p>
-            <p class="lead mb-0" style="text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;"><a href="{{$articles[0]->link}}" class="text-white font-weight-bold">Continue reading...</a></p>
+            <a class="btn btn-primary btn_reading" style="display:none" target="_blank" href="{{$articles[0]->link}}">Continue reading</a>
         </div>
     </div>
 
@@ -47,7 +47,7 @@
                     </h3>
                     <div class="mb-1 text-muted">{{\Carbon\Carbon::parse($a->published_date)->diffForHumans()}}</div>
                     <p class="card-text mb-auto">{{Str::limit($a->description, 120)}}</p>
-                    <a class="btn btn-primary btn_reading" style ="display:none" href="{{$a->link}}">Continue reading</a>
+                    <a class="btn btn-primary btn_reading" style="display:none" target="_blank" href="{{$a->link}}">Continue reading</a>
                     <small class="text-muted">Accreditation: {{$a->feed->url}}</small>
                 </div>
                 <!-- Having to use a random image source because the BBC doesn't seem to give out their images -->
@@ -89,8 +89,27 @@ Depressed = Pressed down
             Array.prototype.forEach.call(buttons, function(el) {
                 el.style.display = 'block';
             });
+        }
+    });
 
+    document.addEventListener("click", function(e) {
+        console.log("Clicked");
 
+        var target = e.target;
+        var activeElement = document.activeElement;
+
+        console.log(target);
+        console.log(activeElement);
+
+        // Will check if the active element and the target which is being clicked is either the body
+        // and not the hyperlink
+        if(activeElement == target && target.tagName.toLowerCase() != 'a') {
+
+            var buttons = document.getElementsByClassName("btn_reading");
+
+            Array.prototype.forEach.call(buttons, function(el) {
+                el.style.display = 'none';
+            });
         }
 
     });

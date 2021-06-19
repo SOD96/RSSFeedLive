@@ -13,8 +13,8 @@ class IndexController extends Controller
     public function showIndex()
     {
         Artisan::call('processFeedArticles:start');
-        // Get any articles by the date as to when they were published
-        $articles = Article::where('deleted', false)->orderBy('published_date', 'desc')->get();
+        // Get any articles by the date as to when they were published, limited to 15 for page performance
+        $articles = Article::where('deleted', false)->orderBy('published_date', 'desc')->limit(15)->get();
 
         return view('welcome', ['articles' => $articles]);
     }
