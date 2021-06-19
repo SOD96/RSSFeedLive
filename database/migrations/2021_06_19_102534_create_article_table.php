@@ -15,7 +15,7 @@ class CreateArticleTable extends Migration
     {
         Schema::create('article', function (Blueprint $table) {
             $table->id();
-            $table->integer('feed_id'); // Link back to the appropriate feed we're pulling from
+            $table->bigInteger('feed_id')->unsigned(); // Link back to the appropriate feed we're pulling from
             $table->string('title');
             $table->string('description');
             $table->string('link');
@@ -24,9 +24,8 @@ class CreateArticleTable extends Migration
             $table->boolean('deleted')->default(false); // For if we want to delete the articles
             $table->timestamps();
 
-            $table->primary(['id', 'feed_id']);
             $table->foreign('feed_id')->references('id')->on('feed');
-            $table->index('deleted');
+            $table->index(['feed_id','deleted']);
         });
     }
 

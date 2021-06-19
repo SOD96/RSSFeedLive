@@ -20,6 +20,7 @@ Clicking anywhere else should hide the button again
 
 ## Future Plan
 - Protect APIs against potential attacks (Subscribing to feeds we don't want)
+- Validation on API routes should display better error messages
 
 ## Findings
 - Twitter seems to have disabled RSS feeds a while ago, only services out there now that provide it (nitter). Shame.

@@ -17,7 +17,7 @@ class CreateFeedTable extends Migration
             $table->id();
             $table->string('url'); // Our feed url
             $table->boolean('active')->default(true); // whether the feed is active or not
-            $table->timestamp('last_checked'); // Update this timestamp whenever we pull the latest articles
+            $table->timestamp('last_checked')->nullable(); // Update this timestamp whenever we pull the latest articles
             $table->timestamps();
 
             $table->index('active'); // Indexing active as we'll only be getting the active feeds
