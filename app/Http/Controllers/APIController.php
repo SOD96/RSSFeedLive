@@ -29,10 +29,17 @@ class APIController extends Controller
             'url' => 'required|max:255'
         ]);
 
-        $feed = Feed::create([
-            'url' => $request->input('url')
-        ]);
+        // Check if the feed already exists
+        $feed = Feed::where('url', $request->input('url'))->first();
 
+        if(!$feed) {
+            $feed = Feed::create([
+                'url' => $request->input('url')
+            ]);
+        }
+
+        // We'll always return with a successful feed result, even if the feed exists because we still want them to
+        // believe it's been added to the system, foils spam attempts etc...
         return ['success' => true, $feed];
     }
 }

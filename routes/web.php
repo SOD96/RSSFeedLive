@@ -18,4 +18,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('admin/test', [FeedController::class, 'createFeed']); // Testing route
+Route::get('admin/test', [FeedController::class, 'adminTest']); // Testing route

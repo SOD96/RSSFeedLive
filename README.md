@@ -16,11 +16,11 @@ Clicking anywhere else should hide the button again
 - Use BBC News feed, good chances with this.
 - Create APIs for subscribing to new feeds / pulling content from feeds
 - Pulled content should be stored in DB, perhaps we setup a laravel job to pull these every minute or so?
-- 
 
 ## Future Plan
 - Protect APIs against potential attacks (Subscribing to feeds we don't want)
 - Validation on API routes should display better error messages
+- Split API Controller into two seperate controllers for Feed / Articles for better segregation
 
 ## Findings
 - Twitter seems to have disabled RSS feeds a while ago, only services out there now that provide it (nitter). Shame.

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
+use App\Models\Feed;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class FeedController extends Controller
@@ -11,28 +14,42 @@ class FeedController extends Controller
     private $feedUrl = 'https://feeds.bbci.co.uk/news/rss.xml?edition=uk';
 
     /**
-     * We'll use this function to create the feeds that we'll be subscribing too.
+     * We'll use this function to test the functionality.
      */
-    public function createFeed()
+    public function adminTest()
     {
+        $feeds = Feed::where('active', true)->get();
         $articles = []; // Init articles incase we get none back
-        $n = 0;
-        $feed = implode(file($this->feedUrl)); // Fetch XML rss feed
 
-        $xml = simplexml_load_string($feed,'SimpleXMLElement', LIBXML_NOCDATA); // Load string using simple XML
-        $json = json_encode($xml); // Encode XML into useable JSON
-        $array = json_decode($json,TRUE); // Decode the JSON into a PHP Array
+        foreach($feeds as $f) {
+            $feed = implode(file($f->url)); // Fetch XML rss feed
 
-        if($array) {
-            foreach($array['channel']['item'] as $i) {
-                $articles[] = $i;
-                $n++;
+            // Load XML String
+            $xml = simplexml_load_string($feed,'SimpleXMLElement', LIBXML_NOCDATA);
+            // Encode into JSON
+            $json = json_encode($xml);
+            // Decode into a PHP Array
+            $array = json_decode($json,TRUE);
+
+            if($array) {
+                foreach($array['channel']['item'] as $i) {
+                    // Check the article doesn't already exist
+                    $articleCheck = Article::where('guid', $i['guid'])->first(); // Believe GUID will be the unique value
+                    if(!$articleCheck) {
+                        // Create the article
+                        $articles[] = Article::create([
+                            'feed_id' => $f->id,
+                            'title' => $i['title'],
+                            'description' => $i['description'],
+                            'link' => $i['link'],
+                            'guid' => $i['guid'],
+                            'published_date' => Carbon::parse(strtotime($i['pubDate']))
+                        ]);
+                    }
+                }
             }
         }
-        if($articles) {
 
-        }
-
-        return $articles;
+        return ['success' => true, $articles];
     }
 }
