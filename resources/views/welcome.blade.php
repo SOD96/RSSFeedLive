@@ -43,10 +43,10 @@
             <div class="card flex-md-row mb-4 box-shadow h-md-250">
                 <div class="card-body d-flex flex-column align-items-start">
                     <h3 class="mb-0">
-                        <a class="text-dark" href="#">{{Str::limit($a->title, 55)}}</a>
+                        <p class="text-dark">{{Str::limit($a->title, 55)}}</p>
                     </h3>
                     <div class="mb-1 text-muted">{{\Carbon\Carbon::parse($a->published_date)->diffForHumans()}}</div>
-                    <p class="card-text mb-auto">{{Str::limit($a->description, 120)}}</p>
+                    <p class="card-text mb-auto">{{Str::limit($a->description, 100)}}</p>
                     <a class="btn btn-primary btn_reading" style="display:none" target="_blank" href="{{$a->link}}">Continue reading</a>
                     <small class="text-muted">Accreditation: {{$a->feed->url}}</small>
                 </div>
