@@ -25,13 +25,8 @@ class FeedController extends Controller
 
         if($array) {
             foreach($array['channel']['item'] as $i) {
-                if($n == 6)
-                {
-                    break;
-                }
                 $articles[] = $i;
                 $n++;
-
             }
         }
         if($articles) {
