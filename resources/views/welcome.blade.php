@@ -80,10 +80,8 @@ Depressed = Pressed down
 
  -->
 <script type="text/javascript">
-
     document.addEventListener("keydown", function(e) {
         if (e.altKey) {
-            console.log("Alt Key Pressed");
             var buttons = document.getElementsByClassName("btn_reading");
 
             Array.prototype.forEach.call(buttons, function(el) {
@@ -93,13 +91,8 @@ Depressed = Pressed down
     });
 
     document.addEventListener("click", function(e) {
-        console.log("Clicked");
-
         var target = e.target;
         var activeElement = document.activeElement;
-
-        console.log(target);
-        console.log(activeElement);
 
         // Will check if the active element and the target which is being clicked is either the body
         // and not the hyperlink
@@ -111,7 +104,6 @@ Depressed = Pressed down
                 el.style.display = 'none';
             });
         }
-
     });
 
 </script>
