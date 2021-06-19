@@ -27,11 +27,35 @@ Clicking anywhere else should hide the button again
 ## Findings
 - Twitter seems to have disabled RSS feeds a while ago, only services out there now that provide it (nitter). Shame.
 
+## Requirements
+This uses Laravel Sail to deploy, you shouldn't need to do anything more than the below commands.
+More on Laravel Sail available: https://laravel.com/docs/8.x/sail#installation
+
 ## Launching Application
 
-run in terminal: `./vendor/bin/sail up`
+Run in terminal: 
+`./vendor/bin/sail up`
+
+Run database migrations
+`./vendor/bin/sail artisan migrate`
+
+If you don't want to use the API via postman, you can seed the database via:
+`./vendor/bin/sail artisan db:seed`
+
+Can manually run the RSS get articles process using the command, however going to the main page will refresh articles anyway
+
+`./vendor/bin/sail artisan processFeedArticles:start`
+
+Launch browser to localhost
+
 
 ## API Requests
 
 Can run Postman to post to `localhost/api/feeds` with the data `url => https://feeds.bbci.co.uk/news/rss.xml?edition=uk` 
 Should be a form-data type
+
+## Testing
+Application tested and working on Google Chrome. Firefox doesn't allow useage of the ALT key due to it being bound to
+show the browser top bar. Would recommend an alternative button to account for firefox users.
+
+Running Windows 10 with WSL2.
