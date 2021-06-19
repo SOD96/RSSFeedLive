@@ -6,9 +6,11 @@ use App\Models\Article;
 use App\Models\Feed;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
+use App\Traits\ProcessRSSFeed;
 
 class processFeedArticles extends Command
 {
+    use ProcessRSSFeed;
     /**
      * The name and signature of the console command.
      *
@@ -41,17 +43,10 @@ class processFeedArticles extends Command
     public function handle()
     {
         $feeds = Feed::where('active', true)->get();
-        $articles = []; // Init articles incase we get none back
 
         foreach($feeds as $f) {
-            $feed = implode(file($f->url)); // Fetch XML rss feed
 
-            // Load XML String
-            $xml = simplexml_load_string($feed,'SimpleXMLElement', LIBXML_NOCDATA);
-            // Encode into JSON
-            $json = json_encode($xml);
-            // Decode into a PHP Array
-            $array = json_decode($json,TRUE);
+            $array = $this->processXML($f);
 
             if($array) {
                 foreach($array['channel']['item'] as $i) {
