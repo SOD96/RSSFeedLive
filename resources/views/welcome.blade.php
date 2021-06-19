@@ -29,16 +29,18 @@
 
     <!-- Get the most recent post -->
     <!-- Added some shadow styling to the title, description and link so they don't appear badly on a bright background -->
-    <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark" style="background-image: url('https://picsum.photos/1300/600')">
-        <div class="col-md-6 px-0">
-            <h1 class="display-4 font-italic" style="text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;">{{strtoupper($articles[0]->title)}}</h1>
-            <p class="lead my-3" style="text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;">{{$articles[0]->description}}</p>
-            <a class="btn btn-primary btn_reading" style="display:none" target="_blank" href="{{$articles[0]->link}}">Continue reading</a>
+    @if(!$articles->isEmpty())
+        <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark" style="background-image: url('https://picsum.photos/1300/600')">
+            <div class="col-md-6 px-0">
+                <h1 class="display-4 font-italic" style="text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;">{{strtoupper($articles[0]->title)}}</h1>
+                <p class="lead my-3" style="text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;">{{$articles[0]->description}}</p>
+                <a class="btn btn-primary btn_reading" style="display:none" target="_blank" href="{{$articles[0]->link}}">Continue reading</a>
+            </div>
         </div>
-    </div>
+    @endif
 
     <div class="row mb-2">
-        @foreach($articles->slice(1,count($articles)) as $a)
+        @forelse($articles->slice(1,count($articles)) as $a)
         <div class="col-md-6">
             <div class="card flex-md-row mb-4 box-shadow h-md-250">
                 <div class="card-body d-flex flex-column align-items-start">
@@ -54,7 +56,9 @@
                 <img class="card-img-right flex-auto d-none d-md-block" data-src="https://picsum.photos/200/300" alt="Thumbnail [200x250]" style="width: 200px; height: 250px;" src="https://picsum.photos/200/300?random={{rand(1,20)}}" data-holder-rendered="true">
             </div>
         </div>
-        @endforeach
+        @empty
+            <p>No feeds added, why not add an RSS feed using the readme.md guide?</p>
+        @endforelse
     </div>
 </div>
 
