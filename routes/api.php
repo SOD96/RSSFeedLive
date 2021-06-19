@@ -19,7 +19,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+// Feed routes
 Route::get('feed', [APIController::class, 'getFeed']);
 Route::post('feed', [APIController::class, 'postFeed']);
 
+// Article Routes
 Route::get('article', [APIController::class, 'getArticles']);
