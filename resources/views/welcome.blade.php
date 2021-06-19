@@ -31,7 +31,7 @@
     <!-- Added some shadow styling to the title, description and link so they don't appear badly on a bright background -->
     <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark" style="background-image: url('https://picsum.photos/1300/400')">
         <div class="col-md-6 px-0">
-            <h1 class="display-4 font-italic" style="text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;">{{$articles[0]->title}}</h1>
+            <h1 class="display-4 font-italic" style="text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;">{{strtoupper($articles[0]->title)}}</h1>
             <p class="lead my-3" style="text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;">{{$articles[0]->description}}</p>
             <p class="lead mb-0" style="text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;"><a href="{{$articles[0]->link}}" class="text-white font-weight-bold">Continue reading...</a></p>
         </div>
